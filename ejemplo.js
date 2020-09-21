@@ -1,3 +1,26 @@
+function createCron() {
+  ScriptApp.newTrigger( "myCronFunction" ).timeBased().everyMinutes(1).create()
+}
+
+function myCronFunction() {
+  const spreadsheetIdPruebaMacros = "1VXgreobAqz2cm96epfr39H9xofakwe_LMnGaAyZ7CWo"
+  const spreadsheet = SpreadsheetApp.openById( spreadsheetIdPruebaMacros )
+  const sheetName = "cronsheet"
+  const sheet = spreadsheet.getSheetByName( sheetName )
+  let row = 1
+  let column = 1
+  let range = sheet.getRange(row, column)
+  
+  while( true ) {
+    if( range.isBlank() ) {
+      range.setValue( new Date() )
+      break;
+    }
+    row++
+    range = sheet.getRange(row, column)
+  }
+}
+
 function correo() {
   /** ej html mail 
   MailApp.sendEmail({
@@ -6,7 +29,7 @@ function correo() {
     htmlBody: message
   });
   */
-  MailApp.sendEmail("lorem@123.cl", "prueba con appscript", "lorem ipsum dolor asit atme")
+  //MailApp.sendEmail("lorem@123.cl", "prueba con appscript", "lorem ipsum dolor asit atme")
   toast( "Correo enviado" )
 }
 
