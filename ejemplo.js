@@ -1,3 +1,20 @@
+function correo() {
+  /** ej html mail 
+  MailApp.sendEmail({
+    to: email,
+    subject: "This is a test email",
+    htmlBody: message
+  });
+  */
+  MailApp.sendEmail("lorem@123.cl", "prueba con appscript", "lorem ipsum dolor asit atme")
+  toast( "Correo enviado" )
+}
+
+function toast(mensaje) {
+  const ss = SpreadsheetApp.getActiveSpreadsheet()
+  ss.toast( mensaje )
+}
+
 function learningMacros() {
 
   // setup de hoja activa para trabajar
