@@ -1,3 +1,24 @@
+function loadDataFromOther() {
+  const otherSpreadsheet = SpreadsheetApp.openById( "1YLTjpadDIh0DMCCYvOMt-9mnlFjltjIcMZ_bBR9FVrM" )  
+  const otherSheet = otherSpreadsheet.getSheets()[0] // Sheet1
+  
+  const spreadsheet = SpreadsheetApp.getActive()
+  const sheet = spreadsheet.getSheetByName("copy")
+  
+  let row = 1
+  let column = 1
+  while( true ) {
+    let range = otherSheet.getRange(row, column)
+    if( range.isBlank() ) {
+      break; 
+    }
+    let valor = range.getValue()
+    sheet.getRange(row, column).setValue( valor )
+    row++
+  }
+  
+}
+
 function createCron() {
   ScriptApp.newTrigger( "myCronFunction" ).timeBased().everyMinutes(1).create()
 }
